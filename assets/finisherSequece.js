@@ -2,6 +2,7 @@
 import promptSync from 'prompt-sync'; const prompt = promptSync();
 
 // F U N C T I O N   I M P O R T S
+import multiLinePrompt from '../multiLinePrompt.js';
 import { ticTacToe } from '../ticTacToe.js';
 import { interact, f, winner, isDraw } from '../assets/interact.js';
 import playField from './playfield.js';
@@ -22,7 +23,7 @@ const finisherSequence = () => {
   if (isDraw) {
     console.clear();
     playField(f);
-    drawMess = prompt(`
+    drawMess = multiLinePrompt(`
 --------------------------------------
 |           IT IS A DRAW !           |
 |                                    |
@@ -38,7 +39,7 @@ const finisherSequence = () => {
   } else {
     console.clear();
     playField(f);
-    congrats = prompt(`
+    congrats = multiLinePrompt(`
 --------------------------------------
 |          CONGRATULATIONS           |
 |                                    |
@@ -55,7 +56,7 @@ const finisherSequence = () => {
   while (!validAnswer) {
     console.clear();
     playField(f);
-    playAgain = prompt(`
+    playAgain = multiLinePrompt(`
 --------------------------------------
 |            PLAY AGAIN ?            |
 |                                    |
@@ -72,7 +73,7 @@ const finisherSequence = () => {
       console.clear();
       playField(f);
       // console.log(`playAgain: ${playAgain} || isDraw: ${isDraw}`);
-      greatChoice = prompt(`
+      greatChoice = multiLinePrompt(`
 --------------------------------------
 |            Great choice            |
 |                                    |
@@ -90,7 +91,7 @@ const finisherSequence = () => {
       console.clear();
       playField(f);
       // console.log(`playAgain: ${playAgain} || isDraw: ${isDraw}`)
-      let greatChoice = prompt(`
+      let greatChoice = multiLinePrompt(`
 --------------------------------------
 |         It's your choice,          |
 |                                    |
@@ -107,7 +108,7 @@ const finisherSequence = () => {
       console.clear();
       playField(f);
       // console.log(`playAgain: ${playAgain} || isDraw: ${isDraw}`)
-      message = prompt(`
+      message = multiLinePrompt(`
 --------------------------------------
 |  Please make sure you only enter   |
 |                                    |

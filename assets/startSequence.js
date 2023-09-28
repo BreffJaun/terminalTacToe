@@ -2,12 +2,12 @@
 import promptSync from 'prompt-sync'; const prompt = promptSync();
 
 // F U N C T I O N   I M P O R T S
-
+import multiLinePrompt from '../multiLinePrompt.js';
 
 // C O D E
 
 let startSequence = () => {
-  let greeting = prompt(`
+  let greeting = multiLinePrompt(`
   --------------------------------------
   |      Welcome to a "TIC TAC TOE"    |
   |                                    |
@@ -20,7 +20,7 @@ let startSequence = () => {
                PRESS ENTER
     `);
     console.clear();
-    let player = prompt(`
+    let player = multiLinePrompt(`
   --------------------------------------
   |      This is a 2 Player game       |
   |                                    |
@@ -33,7 +33,7 @@ let startSequence = () => {
                PRESS ENTER
     `)
     console.clear();
-    let numPad = prompt(`
+    let numPad = multiLinePrompt(`
   --------------------------------------
   |     The numbers in your NumPad     |
   |                                    |
@@ -46,7 +46,7 @@ let startSequence = () => {
                PRESS ENTER
     `)
     console.clear();
-    let numPad2 = prompt(`
+    let numPad2 = multiLinePrompt(`
   -------------------------------------- 
   |           -------------            |
   |           | 7 | 8 | 9 |            |

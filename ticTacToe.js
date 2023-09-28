@@ -2,7 +2,6 @@
 import promptSync from 'prompt-sync'; const prompt = promptSync();
 
 // F U N C T I O N   I M P O R T S
-import playField from './assets/playfield.js';
 import startSequence from './assets/startSequence.js';
 import { finish } from './assets/finisherSequece.js';
 import { interact, f } from './assets/interact.js';
