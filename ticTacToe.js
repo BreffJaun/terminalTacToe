@@ -4,11 +4,11 @@ import promptSync from 'prompt-sync'; const prompt = promptSync();
 // F U N C T I O N   I M P O R T S
 import startSequence from './assets/startSequence.js';
 import { finish } from './assets/finisherSequece.js';
-import { interact, f } from './assets/interact.js';
+import { interact } from './assets/interact.js';
 
 
 // C O D E
-
+// let finish = false;
 const ticTacToe = () => {
   while (!finish) {
     console.clear();

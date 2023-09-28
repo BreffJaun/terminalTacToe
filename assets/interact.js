@@ -133,17 +133,9 @@ const interact = () => {
             player = "X";
             finisherSequence();
           } else {
-
-
-            // OLD ELSE CONTENT
-            interaction = "";
-            vaildInput = false; 
-            console.clear();    
-          }
-
-          console.clear();
-          playField(f);
-          sideChange = multiLinePrompt(`
+            console.clear();
+            playField(f);
+            sideChange = multiLinePrompt(`
 --------------------------------------
 |       ATTENTION:   Player "${player}"      |
 |                                    |
@@ -153,9 +145,15 @@ const interact = () => {
 |                                    |
 |      Click ENTER to continue       |
 --------------------------------------  
-             PRESS ENTER  
-          `)
-          vaildInput = true;
+              PRESS ENTER  
+            `)
+            vaildInput = true;
+
+            // OLD ELSE CONTENT
+            interaction = "";
+            vaildInput = false; 
+            console.clear();    
+          }
         } 
         else {
           console.clear();
@@ -173,7 +171,9 @@ const interact = () => {
              PRESS ENTER
         `)
         }  
+        console.log("NACH NUMBERS ELSE");
       }   
+      console.log("NACH INCLUDES ELSE");
     }
     // CHECK IF SOMEONE ALREADY WINS
     // if (
@@ -226,8 +226,10 @@ const interact = () => {
     //   console.clear();    
     // }
   } 
+  console.log("ERSTE WHILE");
 }
 export {interact, f, winner, isDraw, player};
+
 
 // [" ", " ", " ", " ", " ", " ", " ", " ", " ",];
 //   0    1    2    3    4    5    6    7    8

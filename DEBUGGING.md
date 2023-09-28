@@ -1,0 +1,3 @@
+- [ ] Starts again after type in "n" to quit the game
+- [ ] 
+- [ ] 

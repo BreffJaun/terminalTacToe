@@ -3,8 +3,9 @@ import promptSync from 'prompt-sync'; const prompt = promptSync();
 
 // F U N C T I O N   I M P O R T S
 import multiLinePrompt from '../multiLinePrompt.js';
+// import { ticTacToe, finish } from '../ticTacToe.js';
 import { ticTacToe } from '../ticTacToe.js';
-import { interact, f, winner, isDraw } from '../assets/interact.js';
+import { f, winner, isDraw } from '../assets/interact.js';
 import playField from './playfield.js';
 
 let finish = false;
@@ -68,11 +69,10 @@ const finisherSequence = () => {
 --------------------------------------   
            AND PRESS ENTER
     `).toLowerCase();
-    if (playAgain === "y" || isDraw === "y") {
+    if (playAgain === "y") {
       validAnswer = true;
       console.clear();
       playField(f);
-      // console.log(`playAgain: ${playAgain} || isDraw: ${isDraw}`);
       greatChoice = multiLinePrompt(`
 --------------------------------------
 |            Great choice            |
@@ -86,11 +86,10 @@ const finisherSequence = () => {
              PRESS ENTER
 `)
       ticTacToe();
-    } else if (playAgain === "n" || isDraw === "n") {
+    } else if (playAgain === "n") {
       validAnswer = true;
       console.clear();
       playField(f);
-      // console.log(`playAgain: ${playAgain} || isDraw: ${isDraw}`)
       let greatChoice = multiLinePrompt(`
 --------------------------------------
 |         It's your choice,          |
@@ -103,11 +102,12 @@ const finisherSequence = () => {
 --------------------------------------   
              PRESS ENTER
 `)
+      console.log("finish before = ", finish);
       finish = true;
+      console.log("finish after = ", finish);
     } else {
       console.clear();
       playField(f);
-      // console.log(`playAgain: ${playAgain} || isDraw: ${isDraw}`)
       message = multiLinePrompt(`
 --------------------------------------
 |  Please make sure you only enter   |
@@ -124,6 +124,7 @@ const finisherSequence = () => {
   }
 }
 
+// export {finisherSequence};
 export {finisherSequence, finish};
 
 
