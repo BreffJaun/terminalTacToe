@@ -11,14 +11,17 @@ let f = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
 let player = "X";
 let winner = "";
 let isDraw = false;
+let validInput = false;
+const changeValidInput = () => {
+  validInput = true;
+}
 const interact = () => {
-  let interaction = ""; 
   let alreadyTypedIn = "";
   let sideChange = "";
   let message = "";
-  let vaildInput = false;
+  let interaction = ""; 
   let inputArray = [];
-  f = [" ", " ", " ", " ", " ", " ", " ", " ", " ",]
+  f = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
   playField(f);
   while (
     interaction !== "1" &&
@@ -32,7 +35,7 @@ const interact = () => {
     interaction !== "9" &&
     interaction === ""
     ) {
-      while (!vaildInput) {
+      while (!validInput) {
         console.clear();
         playField(f);
         interaction = prompt(`Enter a number from 1 - 9 to place your symbol: `);
@@ -102,6 +105,7 @@ const interact = () => {
             winner = "X";
             player = "X";
             finisherSequence();
+            // interaction = "F";
           } else if (
             (f[6] === "O" && f[3] === "O" && f[0] === "O") || 
             (f[7] === "O" && f[4] === "O" && f[1] === "O") ||
@@ -116,6 +120,7 @@ const interact = () => {
             winner = "O";
             player = "X";
             finisherSequence();
+            // interaction = "F";
           } else if (
             (f[6] === "X" || f[6] === "O") && 
             (f[7] === "X" || f[7] === "O") &&
@@ -132,6 +137,7 @@ const interact = () => {
             isDraw = true;
             player = "X";
             finisherSequence();
+            // interaction = "F";
           } else {
             console.clear();
             playField(f);
@@ -147,15 +153,12 @@ const interact = () => {
 --------------------------------------  
               PRESS ENTER  
             `)
-            vaildInput = true;
-
             // OLD ELSE CONTENT
             interaction = "";
-            vaildInput = false; 
+            validInput = false; 
             console.clear();    
           }
-        } 
-        else {
+        } else {
           console.clear();
           playField(f);
           message = multiLinePrompt(`
@@ -171,64 +174,11 @@ const interact = () => {
              PRESS ENTER
         `)
         }  
-        console.log("NACH NUMBERS ELSE");
       }   
-      console.log("NACH INCLUDES ELSE");
     }
-    // CHECK IF SOMEONE ALREADY WINS
-    // if (
-    //     (f[6] === "X" && f[3] === "X" && f[0] === "X") || 
-    //     (f[7] === "X" && f[4] === "X" && f[1] === "X") ||
-    //     (f[8] === "X" && f[5] === "X" && f[2] === "X") ||
-    //     (f[6] === "X" && f[7] === "X" && f[8] === "X") ||
-    //     (f[3] === "X" && f[4] === "X" && f[5] === "X") ||
-    //     (f[0] === "X" && f[1] === "X" && f[2] === "X") ||
-    //     (f[6] === "X" && f[4] === "X" && f[2] === "X") ||
-    //     (f[8] === "X" && f[4] === "X" && f[0] === "X")) {
-    //   console.clear();
-    //   playField(f);
-    //   winner = "X";
-    //   player = "X";
-    //   finisherSequence();
-    // } else if (
-    //   (f[6] === "O" && f[3] === "O" && f[0] === "O") || 
-    //   (f[7] === "O" && f[4] === "O" && f[1] === "O") ||
-    //   (f[8] === "O" && f[5] === "O" && f[2] === "O") ||
-    //   (f[6] === "O" && f[7] === "O" && f[8] === "O") ||
-    //   (f[3] === "O" && f[4] === "O" && f[5] === "O") ||
-    //   (f[0] === "O" && f[1] === "O" && f[2] === "O") ||
-    //   (f[6] === "O" && f[4] === "O" && f[2] === "O") ||
-    //   (f[8] === "O" && f[4] === "O" && f[0] === "O")) {
-    //   console.clear(); 
-    //   playField(f);
-    //   winner = "O";
-    //   player = "X";
-    //   finisherSequence();
-    // } else if (
-    //   (f[6] === "X" || f[6] === "O") && 
-    //   (f[7] === "X" || f[7] === "O") &&
-    //   (f[8] === "X" || f[8] === "O") &&
-    //   (f[3] === "X" || f[3] === "O") &&
-    //   (f[4] === "X" || f[4] === "O") &&
-    //   (f[5] === "X" || f[5] === "O") &&
-    //   (f[0] === "X" || f[0] === "O") &&
-    //   (f[1] === "X" || f[1] === "O") &&
-    //   (f[2] === "X" || f[2] === "O") 
-    // ) {
-    //   console.clear();
-    //   playField(f);
-    //   isDraw = true;
-    //   player = "X";
-    //   finisherSequence();
-    // } else {
-    //   interaction = "";
-    //   vaildInput = false; 
-    //   console.clear();    
-    // }
   } 
-  console.log("ERSTE WHILE");
 }
-export {interact, f, winner, isDraw, player};
+export {interact, f, winner, isDraw, player, validInput, changeValidInput};
 
 
 // [" ", " ", " ", " ", " ", " ", " ", " ", " ",];

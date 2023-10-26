@@ -5,12 +5,13 @@ import promptSync from 'prompt-sync'; const prompt = promptSync();
 import multiLinePrompt from '../multiLinePrompt.js';
 // import { ticTacToe, finish } from '../ticTacToe.js';
 import { ticTacToe } from '../ticTacToe.js';
-import { f, winner, isDraw } from '../assets/interact.js';
+import { f, winner, isDraw, validInput, changeValidInput } from '../assets/interact.js';
 import playField from './playfield.js';
 
 let finish = false;
+
 const finisherSequence = () => {
-  let validAnswer = false; // "Y" or "N" to choose play to pla again
+  let validAnswer = false; // "Y" or "N" to choose play again
   // PREDEFINING PROMPT VARIABLES
   let drawMess = "";
   let congrats = "";
@@ -100,11 +101,12 @@ const finisherSequence = () => {
 |                                    |
 | Anyway thanks for playing whimp ;) |
 --------------------------------------   
-             PRESS ENTER
+PRESS ENTER
 `)
-      console.log("finish before = ", finish);
+      // console.log("finish before = ", finish);
       finish = true;
-      console.log("finish after = ", finish);
+      changeValidInput();
+      // console.log("finish after = ", finish);
     } else {
       console.clear();
       playField(f);
