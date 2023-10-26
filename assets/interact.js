@@ -5,6 +5,7 @@ import promptSync from 'prompt-sync'; const prompt = promptSync();
 import multiLinePrompt from '../multiLinePrompt.js';
 import playField from './playfield.js';
 import {finisherSequence} from './finisherSequece.js';
+import { currentPlayers, allTimePlayers } from './scoreBoard.js';
 
 // C O D E
 let f = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
@@ -41,16 +42,16 @@ const interact = () => {
         interaction = prompt(`Enter a number from 1 - 9 to place your symbol: `);
         if (inputArray.includes(interaction)) {
           alreadyTypedIn = multiLinePrompt(`
---------------------------------------
-|    These space in the game has     |
-|                                    |
-|                                    |
-|  already been used by one of you,  |
-|                                    |
-|                                    |
-|        choose a free space         |
--------------------------------------- 
-             PRESS ENTER
+  --------------------------------------
+  |    These space in the game has     |
+  |                                    |
+  |                                    |
+  |  already been used by one of you,  |
+  |                                    |
+  |                                    |
+  |        choose a free space         |
+  -------------------------------------- 
+              PRESS ENTER
           `)
         } else {
         if (!isNaN(interaction) && parseInt(interaction) >= 1 && parseInt(interaction) <= 9) {
@@ -84,10 +85,13 @@ const interact = () => {
             f[2] = player; 
             inputArray.push(interaction);                     
           }
+
           if (player === "X") {
             player = "O";
+            currentPlayers.xMoves += 1;
           } else {
             player = "X";
+            currentPlayers.oMoves += 1;
           }
 
           // CHECK IF SOMEONE ALREADY WINS
@@ -104,8 +108,10 @@ const interact = () => {
             playField(f);
             winner = "X";
             player = "X";
+            // SET WINNER AND LOSER STATS
+            currentPlayers.xWins += 1;
+            currentPlayers.oLoses += 1;
             finisherSequence();
-            // interaction = "F";
           } else if (
             (f[6] === "O" && f[3] === "O" && f[0] === "O") || 
             (f[7] === "O" && f[4] === "O" && f[1] === "O") ||
@@ -119,8 +125,10 @@ const interact = () => {
             playField(f);
             winner = "O";
             player = "X";
+            // SET WINNER AND LOSER STATS
+            currentPlayers.oWins += 1;
+            currentPlayers.xLoses += 1;
             finisherSequence();
-            // interaction = "F";
           } else if (
             (f[6] === "X" || f[6] === "O") && 
             (f[7] === "X" || f[7] === "O") &&
@@ -136,24 +144,25 @@ const interact = () => {
             playField(f);
             isDraw = true;
             player = "X";
+            // SET WINNER AND LOSER STATS
+            currentPlayers.oDraws += 1;
+            currentPlayers.xDraws += 1;
             finisherSequence();
-            // interaction = "F";
           } else {
             console.clear();
             playField(f);
             sideChange = multiLinePrompt(`
---------------------------------------
-|       ATTENTION:   Player "${player}"      |
-|                                    |
-|                                    |
-|         Now it's your turn         |
-|                                    |
-|                                    |
-|      Click ENTER to continue       |
---------------------------------------  
+  -------------------------------------
+  |      ATTENTION:   Player "${player}"      |
+  |                                   |
+  |                                   |
+  |        Now it's your turn         |
+  |                                   |
+  |                                   |
+  |     Click ENTER to continue       |
+  -------------------------------------  
               PRESS ENTER  
             `)
-            // OLD ELSE CONTENT
             interaction = "";
             validInput = false; 
             console.clear();    
@@ -162,16 +171,16 @@ const interact = () => {
           console.clear();
           playField(f);
           message = multiLinePrompt(`
---------------------------------------
-|  Please make sure you only enter   |
-|                                    |
-|                                    |
-|        numbers between 1 - 9       |
-|                                    |
-|                                    |
-|    It's best to use your NumPad    |
---------------------------------------   
-             PRESS ENTER
+  -------------------------------------
+  |  Please make sure you only enter  |
+  |                                   |
+  |                                   |
+  |        numbers between 1 - 9      |
+  |                                   |
+  |                                   |
+  |    It's best to use your NumPad   |
+  -------------------------------------   
+              PRESS ENTER
         `)
         }  
       }   

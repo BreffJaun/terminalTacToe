@@ -8,11 +8,13 @@ import { interact } from './assets/interact.js';
 
 
 // C O D E
-// let finish = false;
+let start = false;
+const changeStart = () => {
+  start = true;
+}
 const ticTacToe = () => {
   while (!finish) {
     console.clear();
-    let start = false;
     if (!start) {
       startSequence();
       start = true;
@@ -22,13 +24,7 @@ const ticTacToe = () => {
 }
 ticTacToe();
 
-export {ticTacToe, finish};
+export {ticTacToe, finish, changeStart};
 
 
 
-// SCHEME
-// |     | ${f[6]} | ${f[7]} | ${f[8]} |     |
-// |     -------------     |
-// |     | ${f[3]} | ${f[4]} | ${f[5]} |     |
-// |     -------------     |
-// |     | ${f[0]} | ${f[1]} | ${f[2]} |     |
