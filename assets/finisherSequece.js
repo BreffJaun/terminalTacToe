@@ -1,5 +1,5 @@
 // P A C K A G E   I M P O R T S
-import promptSync from 'prompt-sync'; const prompt = promptSync();
+// import promptSync from 'prompt-sync'; const prompt = promptSync();
 
 // F U N C T I O N   I M P O R T S
 import multiLinePrompt from '../multiLinePrompt.js';

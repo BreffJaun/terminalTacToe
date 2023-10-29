@@ -1,5 +1,5 @@
 // P A C K A G E   I M P O R T S
-import promptSync from 'prompt-sync'; const prompt = promptSync();
+// import promptSync from 'prompt-sync'; const prompt = promptSync();
 
 // F U N C T I O N   I M P O R T S
 import multiLinePrompt from '../multiLinePrompt.js';
@@ -39,7 +39,7 @@ const interact = () => {
       while (!validInput) {
         console.clear();
         playField(f);
-        interaction = prompt(`Enter a number from 1 - 9 to place your symbol: `);
+        interaction = multiLinePrompt(`Enter a number from 1 - 9 to place your symbol: `);
         if (inputArray.includes(interaction)) {
           alreadyTypedIn = multiLinePrompt(`
   --------------------------------------
