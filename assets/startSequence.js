@@ -25,10 +25,10 @@ let startSequence = () => {
   |     This is a 2 Player game       |
   |                                   |
   |                                   |
-  |   Player 1 (X) starts and then    |
+  |   Player 1 "X" starts and then    |
   |                                   |
   |                                   |
-  |   takes turn with Player 2 (O)    |
+  |   takes turn with Player 2 "O"    |
   -------------------------------------
               PRESS ENTER
   `)
@@ -56,7 +56,7 @@ let startSequence = () => {
   |           | 1 | 2 | 3 |           |
   |           -------------           |
   -------------------------------------
-               PRESS ENTER
+              PRESS ENTER
   `)
   console.clear();
 }

@@ -5,7 +5,7 @@ import promptSync from 'prompt-sync'; const prompt = promptSync();
 import multiLinePrompt from '../multiLinePrompt.js';
 import playField from './playfield.js';
 import {finisherSequence} from './finisherSequece.js';
-import { currentPlayers, allTimePlayers } from './scoreBoard.js';
+import { currentPlayers,  } from './scoreBoard.js';
 
 // C O D E
 let f = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
@@ -87,11 +87,11 @@ const interact = () => {
           }
 
           if (player === "X") {
+            currentPlayers[player].moves += 1;
             player = "O";
-            currentPlayers.xMoves += 1;
           } else {
+            currentPlayers[player].moves += 1;
             player = "X";
-            currentPlayers.oMoves += 1;
           }
 
           // CHECK IF SOMEONE ALREADY WINS
@@ -109,8 +109,8 @@ const interact = () => {
             winner = "X";
             player = "X";
             // SET WINNER AND LOSER STATS
-            currentPlayers.xWins += 1;
-            currentPlayers.oLoses += 1;
+            currentPlayers.X.wins += 1;
+            currentPlayers.O.loses += 1;
             finisherSequence();
           } else if (
             (f[6] === "O" && f[3] === "O" && f[0] === "O") || 
@@ -126,8 +126,8 @@ const interact = () => {
             winner = "O";
             player = "X";
             // SET WINNER AND LOSER STATS
-            currentPlayers.oWins += 1;
-            currentPlayers.xLoses += 1;
+            currentPlayers.O.wins += 1;
+            currentPlayers.X.loses += 1;
             finisherSequence();
           } else if (
             (f[6] === "X" || f[6] === "O") && 
@@ -145,8 +145,8 @@ const interact = () => {
             isDraw = true;
             player = "X";
             // SET WINNER AND LOSER STATS
-            currentPlayers.oDraws += 1;
-            currentPlayers.xDraws += 1;
+            currentPlayers.X.draws += 1;
+            currentPlayers.O.draws += 1;
             finisherSequence();
           } else {
             console.clear();

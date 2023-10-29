@@ -7,7 +7,7 @@ import multiLinePrompt from '../multiLinePrompt.js';
 import { ticTacToe, changeStart } from '../ticTacToe.js';
 import { f, winner, isDraw, validInput, changeValidInput } from '../assets/interact.js';
 import playField from './playfield.js';
-import { currentPlayers, clearCurrentPlayer, allTimePlayers } from './scoreBoard.js';
+import { currentPlayers, clearCurrentPlayer, curWinnerStats, sortedPlayers, leadingZeros} from './scoreBoard.js';
 
 let finish = false;
 
@@ -19,6 +19,12 @@ const finisherSequence = () => {
   let playAgain = "";
   let greatChoice = "";
   let message = "";
+  let viewStats = false;
+  let showStats = "";
+  let smallOrBig = "";
+  let viewBigOrSmall = false;
+  let statsSmall = "";
+  let statsBig = "";
 
   console.clear();
   playField(f);
@@ -36,7 +42,7 @@ const finisherSequence = () => {
   |                                   |
   |          in a next round...       |
   -------------------------------------   
-               PRESS ENTER
+              PRESS ENTER
         `)
 
   } else {
@@ -47,13 +53,113 @@ const finisherSequence = () => {
   |          CONGRATULATIONS          |
   |                                   |
   |                                   |
-  |          PLAYER (${winner}) WIN !         |
+  |         PLAYER >>${winner}<< WIN !        |
   |                                   |
   |                                   |
-  |     MOVES: ${}  ||   WINS: ${}   |
+  |     MOVES: ${curWinnerStats(winner)[1]}  ||   WINS: ${curWinnerStats(winner)[0]}    |
   -------------------------------------   
-                PRESS ENTER
+              PRESS ENTER
     `)
+  while (!viewStats) {
+    console.clear();
+    playField(f);
+    showStats = multiLinePrompt(`
+  -------------------------------------
+  |       WANT TO SEE THE STATS ?     |
+  |                                   |
+  |                                   |
+  |      TYPE IN "Y" to see stats     |
+  |                                   |
+  |                                   |
+  |      OR "N" to skip the stats!    |
+  -------------------------------------   
+             AND PRESS ENTER
+    `).toLowerCase();
+    if (showStats === "y") {
+      console.clear();
+      playField(f);
+      viewStats = true;
+      while (!viewBigOrSmall) {
+        smallOrBig = multiLinePrompt(`
+  -------------------------------------
+  |   PRESS "S" for shortened stats   |
+  |                                   |
+  |                                   |
+  |                OR                 |
+  |                                   |
+  |                                   |
+  |   PRESS "D" for detailed stats    |
+  -------------------------------------   
+              PRESS ENTER
+          `).toLowerCase(); 
+      if (smallOrBig === "s") {
+        console.clear();
+        playField(f)
+        viewBigOrSmall = true;
+        statsSmall = multiLinePrompt(`
+  -------------------------------------
+  |     TOTAL PLAYER STATISTICS       |
+  |                                   |
+  |  |  P  |  W  |  L  |  D  |  M  |  |
+  |  -------------------------------  |
+  |  |  ${sortedPlayers[0][0]}  | ${leadingZeros(sortedPlayers[0][1].wins)} | ${leadingZeros(sortedPlayers[0][1].loses)} | ${leadingZeros(sortedPlayers[0][1].draws)} | ${leadingZeros(sortedPlayers[0][1].moves)} |  |
+  |  |  ${sortedPlayers[1][0]}  | ${leadingZeros(sortedPlayers[1][1].wins)} | ${leadingZeros(sortedPlayers[1][1].loses)} | ${leadingZeros(sortedPlayers[1][1].draws)} | ${leadingZeros(sortedPlayers[1][1].moves)} |  |
+  |                                   |
+  |                                   |
+  |                                   | 
+  -------------------------------------   
+              PRESS ENTER
+        `);
+      } else if (smallOrBig === "d") {
+        console.clear();
+        playField(f)
+        viewBigOrSmall = true
+        statsBig = multiLinePrompt(`
+  -------------------------------------------------------------------------
+  |          T O T A L      P L A Y E R      S T A T I S T I C S          |
+  |                                                                       |
+  |     |   PLAYER  |   WINS    |   LOSES   |   DRAWS   |   MOVES   |     |   
+  |     -------------------------------------------------------------     |
+  |     |     ${sortedPlayers[0][0]}     |    ${leadingZeros(sortedPlayers[0][1].wins)}    |    ${leadingZeros(sortedPlayers[0][1].loses)}    |    ${leadingZeros(sortedPlayers[0][1].draws)}    |    ${leadingZeros(sortedPlayers[0][1].moves)}    |     |
+  |     |     ${sortedPlayers[1][0]}     |    ${leadingZeros(sortedPlayers[1][1].wins)}    |    ${leadingZeros(sortedPlayers[1][1].loses)}    |    ${leadingZeros(sortedPlayers[1][1].draws)}    |    ${leadingZeros(sortedPlayers[1][1].moves)}    |     |
+  |                                                                       |
+  |                                                                       |
+  |                                                                       | 
+  -------------------------------------------------------------------------   
+                                  PRESS ENTER
+      `)
+      } else {
+        message = multiLinePrompt(`
+  -------------------------------------
+  |  Please make sure you only enter  |
+  |                                   |
+  |            "S" OR "D"             |
+  |                                   |
+  |    for short or detailed stats!   |
+  |                                   |
+  | Your input is invalid, try again! |
+  -------------------------------------   
+              PRESS ENTER
+       `)
+      }
+    }
+    } else if (showStats === "n"){
+      viewStats = true;
+    } else {
+      message = multiLinePrompt(`
+  -------------------------------------
+  |  Please make sure you only enter  |
+  |                                   |
+  |                                   |
+  | "Y" to show or "N" to skip stats. |
+  |                                   |
+  |                                   |
+  | Your input is invalid, try again! |
+  -------------------------------------   
+              PRESS ENTER
+      `)
+      }
+    }
   }
 
   while (!validAnswer) {
@@ -85,7 +191,7 @@ const finisherSequence = () => {
   |                                   |
   |      have fun in the next round   |
   -------------------------------------   
-               PRESS ENTER
+              PRESS ENTER
 `)
       changeStart();
       ticTacToe();
@@ -103,7 +209,7 @@ const finisherSequence = () => {
   |                                   |
   |     Thanks for playing whimp ;)   |
   -------------------------------------   
-               PRESS ENTER
+              PRESS ENTER
 `)
       // CLEAR PLAYER STATS
       clearCurrentPlayer();
@@ -122,7 +228,7 @@ const finisherSequence = () => {
   |                                   |
   | Your input is invalid, try again! |
   -------------------------------------   
-               PRESS ENTER
+              PRESS ENTER
      `)
     }
   }
