@@ -4,7 +4,7 @@ import promptSync from 'prompt-sync'; const prompt = promptSync();
 // F U N C T I O N   I M P O R T S
 import multiLinePrompt from '../multiLinePrompt.js';
 
-import { ticTacToe, changeStart } from '../ticTacToe.js';
+import { ticTacToe, changeStart } from '../terminalTacToe.js';
 import { f, winner, isDraw, validInput, changeValidInput } from '../assets/interact.js';
 import playField from './playfield.js';
 import { currentPlayers, clearCurrentPlayer, curWinnerStats, sortedPlayers, leadingZeros} from './scoreBoard.js';

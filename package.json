@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "terminalTacToe",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -29,5 +29,8 @@
   },
   "dependencies": {
     "prompt-sync": "^4.2.0"
+  },
+  "bin": {
+    "start": "./ticTacToe.js"
   }
 }
