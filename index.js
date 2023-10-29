@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // P A C K A G E   I M P O R T S
 // import promptSync from 'prompt-sync'; const prompt = promptSync();
 
