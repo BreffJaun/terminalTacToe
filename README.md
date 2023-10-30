@@ -1,7 +1,7 @@
 # terminalTacToe
 
 ## instructions
-You need to have nodejs installed on your system. <u>**<a href="https://kinsta.com/blog/how-to-install-node-js/">Here</a>**</u> is a link for how to install node.js on your system.
+You need to have nodejs installed on your system. <u>**<a href="https://kinsta.com/blog/how-to-install-node-js/" target="_blank">Here</a>**</u> is a link for how to install node.js on your system.
 If you had node.js installed, you can start the game with
 
 ```sh
