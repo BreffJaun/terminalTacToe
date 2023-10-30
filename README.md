@@ -35,4 +35,20 @@ At the end of the game you can choose to view the game statistics (in a short or
 
 Have fun playing :D
 
+## dependencies
+<table>
+    <tr>
+        <th>Dependency</th>
+        <th>Description</th>
+        <th>Version</th>
+    </tr>
+    <tr>
+        <td>prompt-sync</td>
+        <td>A sync prompt for node. very simple. no C++ bindings and no bash scripts.</td>
+        <td>4.2.0</td>
+    </tr>
+</table>
+
+
+
 
