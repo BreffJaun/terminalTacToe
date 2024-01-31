@@ -5,7 +5,7 @@
 import multiLinePrompt from '../multiLinePrompt.js';
 
 import { ticTacToe, changeStart } from '../index.js';
-import { f, winner, isDraw, validInput, changeValidInput } from '../assets/interact.js';
+import { f, winner, isDraw, validInput, changeValidInput, resetGame } from '../assets/interact.js';
 import playField from './playfield.js';
 import { currentPlayers, clearCurrentPlayer, curWinnerStats, sortedPlayers, leadingZeros} from './scoreBoard.js';
 
@@ -193,6 +193,7 @@ const finisherSequence = () => {
   -------------------------------------   
               PRESS ENTER
 `)
+      resetGame();
       changeStart();
       ticTacToe();
     } else if (playAgain === "n") {

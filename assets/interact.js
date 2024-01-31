@@ -13,6 +13,15 @@ let player = "X";
 let winner = "";
 let isDraw = false;
 let validInput = false;
+
+const resetGame = () => {
+  f = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
+  player = "X";
+  winner = "";
+  isDraw = false;
+  validInput = false;
+}
+
 const changeValidInput = () => {
   validInput = true;
 }
@@ -187,7 +196,7 @@ const interact = () => {
     }
   } 
 }
-export {interact, f, winner, isDraw, player, validInput, changeValidInput};
+export {interact, f, winner, isDraw, player, validInput, changeValidInput, resetGame};
 
 
 // [" ", " ", " ", " ", " ", " ", " ", " ", " ",];
